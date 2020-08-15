@@ -6,14 +6,15 @@ import core.ExpenseList;
 import java.util.Scanner;
 
 public class ConsoleView {
-    ExpenseList expenseList = new ExpenseList();
+    private boolean stop = false;
+    private ExpenseList expenseList = new ExpenseList();
 
     private void start() {
         System.out.println("Hi and welcome to expense manager console view");
         System.out.println("What do you want to do?");
         System.out.println("1. To add expense type: add expense [description] [amount]");
         System.out.println("2. To display all expenses type: display expenses");
-        while (true) {
+        while (!stop) {
             Scanner scanner = new Scanner(System.in);
             String inputLine = scanner.nextLine().trim();
             if (inputLine.startsWith("add expense")) {
@@ -47,10 +48,13 @@ public class ConsoleView {
                 System.out.println("=========");
                 System.out.println("Total expenses: " + expenseList.size());
                 System.out.println("Total amount: " + expenseList.getTotalExpenseAmount());
+            } else if (inputLine.equals("exit")) {
+                stop = true;
             } else {
                 System.out.println("Incorrect command '" + inputLine + "', please try again");
             }
         }
+        System.out.println("Bye Bye");
     }
 
     public static void main(String[] args) {
