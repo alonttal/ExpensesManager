@@ -1,3 +1,5 @@
+package core;
+
 public class Expense {
     private int amount;
     private String description;
